@@ -32,7 +32,7 @@ module "cluster" {
     type  = "g7-highmem-1"
     }, {
     // 6 nodes 16 vCPUs 32GB RAM
-    count = 7
+    count = 6
     type  = "g6-standard-8"
   }]
 }
