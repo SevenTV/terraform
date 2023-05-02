@@ -1,7 +1,7 @@
 variable "k8s_version" {
   type        = string
   description = "The Kubernetes version to use for the cluster."
-  default     = "1.25"
+  default     = "1.26"
 }
 
 variable "region" {

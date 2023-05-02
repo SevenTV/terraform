@@ -81,12 +81,12 @@ resource "helm_release" "nginx" {
 
   set {
     name  = "autoscaling.minReplicas"
-    value = "10"
+    value = var.min_replicas
   }
 
   set {
     name  = "autoscaling.maxReplicas"
-    value = "100"
+    value = var.max_replicas
   }
 
   set {

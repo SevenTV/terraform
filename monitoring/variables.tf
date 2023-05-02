@@ -5,7 +5,7 @@ variable "grafana_namespace" {
 
 variable "grafana_chart_version" {
   description = "The version of the Grafana chart to use."
-  default     = "8.2.31"
+  default     = "8.2.33"
 }
 
 variable "grafana_domain" {
@@ -19,7 +19,7 @@ variable "prometheus_namespace" {
 
 variable "prometheus_chart_version" {
   description = "The version of the Prometheus chart to use."
-  default     = "8.4.1"
+  default     = "8.9.1"
 }
 
 variable "prometheus_scrape_interval" {
@@ -34,7 +34,7 @@ variable "mimir_namespace" {
 
 variable "mimir_chart_version" {
   description = "The version of the Mimir chart to use."
-  default     = "0.2.2"
+  default     = "0.4.1"
 }
 
 variable "mimir_bucket_name" {
@@ -54,7 +54,7 @@ variable "loki_namespace" {
 
 variable "loki_chart_version" {
   description = "The version of the Loki chart to use."
-  default     = "2.6.0"
+  default     = "2.7.1"
 }
 
 variable "loki_bucket_name" {

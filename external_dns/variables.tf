@@ -5,7 +5,7 @@ variable "namespace" {
 
 variable "chart_version" {
   description = "The version of the ExternalDNS Helm chart to use."
-  default     = "6.14.4"
+  default     = "6.19.1"
 }
 
 variable "prometheus_namespace" {
