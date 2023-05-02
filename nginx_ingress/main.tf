@@ -81,22 +81,22 @@ resource "helm_release" "nginx" {
 
   set {
     name  = "autoscaling.minReplicas"
-    value = "3"
-  }
-
-  set {
-    name  = "autoscaling.maxReplicas"
     value = "10"
   }
 
   set {
+    name  = "autoscaling.maxReplicas"
+    value = "100"
+  }
+
+  set {
     name  = "autoscaling.targetCPU"
-    value = "80"
+    value = "60"
   }
 
   set {
     name  = "autoscaling.targetMemory"
-    value = "80"
+    value = "60"
   }
 
   set {
@@ -106,7 +106,7 @@ resource "helm_release" "nginx" {
 
   set {
     name  = "resources.limits.memory"
-    value = "1024Mi"
+    value = "2048Mi"
   }
 
   set {
@@ -116,7 +116,7 @@ resource "helm_release" "nginx" {
 
   set {
     name  = "resources.requests.memory"
-    value = "1024Mi"
+    value = "2048Mi"
   }
 
   set {

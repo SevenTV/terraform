@@ -8,6 +8,10 @@ variable "grafana_chart_version" {
   default     = "8.2.31"
 }
 
+variable "grafana_domain" {
+  description = "The domain to use for Grafana."
+}
+
 variable "prometheus_namespace" {
   description = "The namespace to deploy Prometheus to."
   default     = "prometheus"

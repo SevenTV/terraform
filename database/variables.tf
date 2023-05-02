@@ -40,17 +40,12 @@ variable "mongo_namespace" {
 
 variable "mongo_chart_version" {
   description = "The version of the MongoDB chart to use."
-  default     = "6.3.2"
+  default     = "13.9.2"
 }
 
 variable "mongo_replica_count" {
   description = "The number of replicas to deploy."
-  default     = 2
-}
-
-variable "mongo_shard_count" {
-  description = "The number of shards to deploy."
-  default     = 3
+  default     = 6
 }
 
 variable "mongo_cpu_request" {

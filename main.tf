@@ -43,6 +43,7 @@ module "monitoring" {
   mimir_bucket_name = "7tv-${local.workspace}-mimir"
   s3_endpoint       = "us-east-1.linodeobjects.com"
   s3_region         = "us-east-1"
+  grafana_domain    = "grafana.${local.workspace}.7tv.app"
 
   depends_on = [
     module.cluster,

@@ -1,3 +1,8 @@
+resource "random_password" "grafana" {
+  length  = 32
+  special = true
+}
+
 resource "helm_release" "grafana" {
   name             = "grafana"
   repository       = "https://charts.bitnami.com/bitnami"
@@ -9,6 +14,11 @@ resource "helm_release" "grafana" {
   depends_on = [
     helm_release.prometheus,
   ]
+
+  set {
+    name  = "admin.password"
+    value = random_password.grafana.result
+  }
 
   set {
     name  = "grafana.metrics.enabled"
@@ -43,5 +53,40 @@ resource "helm_release" "grafana" {
   set {
     name  = "grafana.updateStrategy.rollingUpdate"
     value = "null"
+  }
+
+  set {
+    name = "ingress.enabled"
+    value = "true"
+  }
+
+  set {
+    name = "ingress.hostname"
+    value = var.grafana_domain
+  }
+
+  set {
+    name = "ingress.annotations.kubernetes\\.io/ingress\\.class"
+    value = "nginx"
+  }
+
+  set {
+    name = "ingress.tls"
+    value = "true"
+  }
+
+  set {
+    name = "ingress.annotations.cert-manager\\.io/cluster-issuer"
+    value = "cloudflare"
+  }
+
+  set {
+    name = "ingress.annotations.external-dns\\.alpha\\.kubernetes\\.io/hostname"
+    value = var.grafana_domain
+  }
+
+  set {
+    name = "ingress.annotations.kubernetes\\.io/ingress\\.class"
+    value = "nginx"
   }
 }

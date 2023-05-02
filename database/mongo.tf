@@ -9,10 +9,15 @@ resource "random_password" "mongo" {
   special = false
 }
 
+resource "random_password" "mongo_replica_key" {
+  length  = 32
+  special = false
+}
+
 resource "helm_release" "mongo" {
   name       = "mongo"
   repository = "https://charts.bitnami.com/bitnami"
-  chart      = "mongodb-sharded"
+  chart      = "mongodb"
   version    = var.mongo_chart_version
   namespace  = var.mongo_namespace
 
@@ -26,38 +31,33 @@ resource "helm_release" "mongo" {
   }
 
   set {
-    name  = "shards"
-    value = var.mongo_shard_count
-  }
-
-  set {
-    name  = "common.useHostnames"
-    value = "true"
-  }
-
-  set {
-    name  = "mongos.replicaCount"
-    value = "3"
-  }
-
-  set {
-    name  = "shardsvr.dataNode.replicaCount"
+    name  = "replicaCount"
     value = var.mongo_replica_count
   }
 
   set {
-    name  = "shardsvr.dataNode.resources.requests.cpu"
+    name = "auth.replicaSetKey"
+    value = random_password.mongo_replica_key.result
+  }
+
+  set {
+    name  = "architecture"
+    value = "replicaset"
+  }
+
+  set {
+    name  = "resources.requests.cpu"
     value = var.mongo_cpu_request
   }
 
   set {
-    name  = "shardsvr.dataNode.resources.requests.memory"
+    name  = "resources.requests.memory"
     value = var.mongo_memory_request
   }
 
 
   set {
-    name  = "shardsvr.persistence.size"
+    name  = "persistence.size"
     value = var.mongo_disk_size
   }
 
